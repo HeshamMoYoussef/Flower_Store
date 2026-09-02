@@ -25,11 +25,11 @@ class _GetDataFromFirestoreState extends State<GetDataFromFirestore> {
           builder:
               (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text("Something went wrong");
+              return const Text("Something went wrong");
             }
 
             if (snapshot.hasData && !snapshot.data!.exists) {
-              return Text("Document does not exist");
+              return const Text("Document does not exist");
             }
 
             if (snapshot.connectionState == ConnectionState.done) {
@@ -38,126 +38,35 @@ class _GetDataFromFirestoreState extends State<GetDataFromFirestore> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 9,
-                  ),
+                  const SizedBox(height: 9),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Username: ${data['username'] ?? 'Enter User Name'}",
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
+                        style: const TextStyle(fontSize: 17),
                       ),
                       Row(
                         children: [
                           IconButton(
-                              onPressed: () {
-                                deleteField(
-                                    myKey: 'username', setState: setState);
-                              },
-                              icon: Icon(Icons.delete)),
-                          IconButton(
-                              onPressed: () {
-                                profileEditInfoDialog(
-                                  context: context,
-                                  data: data,
-                                  myKey: 'username',
-                                  setState: setState,
-                                );
-                              },
-                              icon: Icon(Icons.edit)),
-                        ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Email: ${data['email'] ?? 'Enter Email'}",
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                deleteField(myKey: 'email', setState: setState);
-                              },
-                              icon: Icon(Icons.delete)),
-                          IconButton(
-                              onPressed: () {
-                                profileEditInfoDialog(
-                                  context: context,
-                                  data: data,
-                                  myKey: 'email',
-                                  setState: setState,
-                                );
-                              },
-                              icon: Icon(Icons.edit)),
-                        ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Age: ${data['age'] ?? 'Enter Age'} years old",
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                deleteField(myKey: 'age', setState: setState);
-                              },
-                              icon: Icon(Icons.delete)),
-                          IconButton(
-                              onPressed: () {
-                                profileEditInfoDialog(
-                                  context: context,
-                                  data: data,
-                                  myKey: 'age',
-                                  setState: setState,
-                                );
-                              },
-                              icon: Icon(Icons.edit)),
-                        ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Title: ${data['title'] ?? 'Enter Title'} ",
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                deleteField(myKey: 'title', setState: setState);
-                              },
-                              icon: Icon(Icons.delete)),
+                            onPressed: () {
+                              deleteField(
+                                myKey: 'username',
+                                setState: setState,
+                              );
+                            },
+                            icon: const Icon(Icons.delete),
+                          ),
                           IconButton(
                             onPressed: () {
                               profileEditInfoDialog(
                                 context: context,
                                 data: data,
-                                myKey: 'title',
+                                myKey: 'username',
                                 setState: setState,
                               );
                             },
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                           ),
                         ],
                       ),
@@ -167,16 +76,99 @@ class _GetDataFromFirestoreState extends State<GetDataFromFirestore> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Password: ${data['pass'] ?? 'Enter Password'}",
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
+                        "Email: ${data['email'] ?? 'Enter Email'}",
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              deleteField(
+                                myKey: 'email',
+                                setState: setState,
+                              );
+                            },
+                            icon: const Icon(Icons.delete),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              profileEditInfoDialog(
+                                context: context,
+                                data: data,
+                                myKey: 'email',
+                                setState: setState,
+                              );
+                            },
+                            icon: const Icon(Icons.edit),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 25,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Age: ${data['age'] ?? 'Enter Age'} years old",
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              deleteField(myKey: 'age', setState: setState);
+                            },
+                            icon: const Icon(Icons.delete),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              profileEditInfoDialog(
+                                context: context,
+                                data: data,
+                                myKey: 'age',
+                                setState: setState,
+                              );
+                            },
+                            icon: const Icon(Icons.edit),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Title: ${data['title'] ?? 'Enter Title'} ",
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              deleteField(
+                                myKey: 'title',
+                                setState: setState,
+                              );
+                            },
+                            icon: const Icon(Icons.delete),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              profileEditInfoDialog(
+                                context: context,
+                                data: data,
+                                myKey: 'title',
+                                setState: setState,
+                              );
+                            },
+                            icon: const Icon(Icons.edit),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 25),
                   Center(
                     child: TextButton(
                       onPressed: () {
@@ -184,20 +176,18 @@ class _GetDataFromFirestoreState extends State<GetDataFromFirestore> {
                           users.doc(user!.uid).delete();
                         });
                       },
-                      child: Text(
+                      child: const Text(
                         "Delete Data",
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15),
                 ],
               );
             }
 
-            return Text("loading");
+            return const Text("loading");
           },
         ),
       ),

@@ -58,17 +58,24 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     /////////////////////// Provider here ////////////////////
     debugPrint('Inside Register Screen');
-    final registeredProvider =
-        Provider.of<RegisteredUserProvider>(context, listen: false);
+    final registeredProvider = Provider.of<RegisteredUserProvider>(
+      context,
+      listen: false,
+    );
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Register'),
-          centerTitle: true,
-          backgroundColor: appBarGreen),
+        title: const Text('Register'),
+        centerTitle: true,
+        backgroundColor: appBarGreen,
+      ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding:
-            const EdgeInsets.only(top: 25, bottom: 25, left: 25, right: 25),
+        padding: const EdgeInsets.only(
+          top: 25,
+          bottom: 25,
+          left: 25,
+          right: 25,
+        ),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -76,8 +83,8 @@ class _RegisterState extends State<Register> {
               children: [
                 ///////////////////////////
                 Container(
-                  padding: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: appBarGreen,
                     // Color.fromARGB(125, 78, 91, 110),
@@ -85,14 +92,19 @@ class _RegisterState extends State<Register> {
                   child: Stack(
                     children: [
                       registeredProvider.imgPath == null
-                          ? CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 225, 225, 225),
+                          ? const CircleAvatar(
+                              backgroundColor: Color.fromARGB(
+                                255,
+                                225,
+                                225,
+                                225,
+                              ),
                               radius: 70,
 
                               // backgroundImage: AssetImage("assets/img/avatar.png"),
-                              backgroundImage:
-                                  AssetImage("assets/img/avatar.png"),
+                              backgroundImage: AssetImage(
+                                "assets/img/avatar.png",
+                              ),
                             )
                           : ClipOval(
                               child: Image.file(
@@ -108,22 +120,22 @@ class _RegisterState extends State<Register> {
                         child: IconButton(
                           onPressed: () async {
                             await showModel(
-                                context: context, setState: setState);
+                              context: context,
+                              setState: setState,
+                            );
                           },
                           icon: const Icon(
                             Icons.add_a_photo,
                             color: Colors.grey,
                           ),
-                          color: Color.fromARGB(255, 94, 115, 128),
+                          color: const Color.fromARGB(255, 94, 115, 128),
                         ),
                       ),
                     ],
                   ),
                 ),
 
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
 
                 TextFormField(
                   // we return "null" when something is valid
@@ -139,39 +151,37 @@ class _RegisterState extends State<Register> {
                     suffixIcon: const Icon(Icons.person_outlined),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 TextFormField(
-                    // we return "null" when something is valid
-                    validator: (value) {
-                      return value!.length < 2 ? "Enter Your Age" : null;
-                    },
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: ageController,
-                    keyboardType: TextInputType.number,
-                    obscureText: false,
-                    decoration: decorationTextField.copyWith(
-                        hintText: "Enter age : ",
-                        suffixIcon: Icon(Icons.person_add_alt))),
-                const SizedBox(
-                  height: 20,
+                  // we return "null" when something is valid
+                  validator: (value) {
+                    return value!.length < 2 ? "Enter Your Age" : null;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: ageController,
+                  keyboardType: TextInputType.number,
+                  obscureText: false,
+                  decoration: decorationTextField.copyWith(
+                    hintText: "Enter age : ",
+                    suffixIcon: const Icon(Icons.person_add_alt),
+                  ),
                 ),
+                const SizedBox(height: 20),
                 TextFormField(
-                    // we return "null" when something is valid
-                    validator: (value) {
-                      return value!.length < 3 ? "Enter Your Title" : null;
-                    },
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: titleController,
-                    keyboardType: TextInputType.text,
-                    obscureText: false,
-                    decoration: decorationTextField.copyWith(
-                        hintText: "Enter Title : ",
-                        suffixIcon: Icon(Icons.person_pin_sharp))),
-                const SizedBox(
-                  height: 20,
+                  // we return "null" when something is valid
+                  validator: (value) {
+                    return value!.length < 3 ? "Enter Your Title" : null;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: titleController,
+                  keyboardType: TextInputType.text,
+                  obscureText: false,
+                  decoration: decorationTextField.copyWith(
+                    hintText: "Enter Title : ",
+                    suffixIcon: const Icon(Icons.person_pin_sharp),
+                  ),
                 ),
+                const SizedBox(height: 20),
                 TextFormField(
                   // we return "null" when something is valid
                   validator: (email) {
@@ -186,9 +196,7 @@ class _RegisterState extends State<Register> {
                     suffixIcon: const Icon(Icons.email),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 TextFormField(
                   onChanged: (value) {
                     if (value.isNotEmpty) {
@@ -225,9 +233,7 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
+                const SizedBox(height: 8),
                 if (pwValidator)
                   FlutterPwValidator(
                     controller: passwordController,
@@ -246,12 +252,8 @@ class _RegisterState extends State<Register> {
                     // },
                   )
                 else
-                  const SizedBox(
-                    height: 0,
-                  ),
-                const SizedBox(
-                  height: 20,
-                ),
+                  const SizedBox(height: 0),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate() &&
@@ -275,39 +277,42 @@ class _RegisterState extends State<Register> {
                       showSnackBar(context, "Enter An Image", 2);
                     } else {
                       showSnackBar(
-                          context, "Enter a valid Email,Password And Image", 2);
+                        context,
+                        "Enter a valid Email,Password And Image",
+                        2,
+                      );
                     }
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(btnGreen),
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(12)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8))),
+                    backgroundColor: WidgetStateProperty.all(btnGreen),
+                    padding: WidgetStateProperty.all(
+                      const EdgeInsets.all(12),
+                    ),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                   ),
                   child: isLoading
-                      ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : const Text(
-                          "Register",
-                          style: TextStyle(fontSize: 19),
-                        ),
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text("Register", style: TextStyle(fontSize: 19)),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("have an account?",
-                        style: TextStyle(fontSize: 18)),
+                    const Text(
+                      "have an account?",
+                      style: TextStyle(fontSize: 18),
+                    ),
                     TextButton(
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Login()),
+                            builder: (context) => const Login(),
+                          ),
                         );
                       },
                       child: const Text(

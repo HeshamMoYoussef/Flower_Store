@@ -31,41 +31,37 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
               style: TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
                 // sendVerificationEmail();
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(btnGreen),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(12)),
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8))),
+                backgroundColor: WidgetStateProperty.all(btnGreen),
+                padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
               ),
-              child: const Text(
-                "Resent Email",
-                style: TextStyle(fontSize: 20),
-              ),
+              child: const Text("Resent Email", style: TextStyle(fontSize: 20)),
             ),
-            const SizedBox(
-              height: 11,
-            ),
+            const SizedBox(height: 11),
             ElevatedButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(btnGreen),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(12)),
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8))),
+                backgroundColor: WidgetStateProperty.all(btnGreen),
+                padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
               ),
-              child: const Text(
-                "Cancel",
-                style: TextStyle(fontSize: 20),
-              ),
+              child: const Text("Cancel", style: TextStyle(fontSize: 20)),
             ),
           ],
         ),

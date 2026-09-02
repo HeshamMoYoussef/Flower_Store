@@ -13,7 +13,7 @@ profileEditInfoDialog({context, data, myKey, setState}) {
       return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           height: 200,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -28,30 +28,26 @@ profileEditInfoDialog({context, data, myKey, setState}) {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 5,
-              ),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   TextButton(
                     onPressed: () {
                       editFunc(
-                          myKey: myKey, context: context, setState: setState);
+                        myKey: myKey,
+                        context: context,
+                        setState: setState,
+                      );
                     },
-                    child: Text(
-                      "Edit",
-                      style: TextStyle(fontSize: 17),
-                    ),
+                    child: const Text("Edit", style: TextStyle(fontSize: 17)),
                   ),
                   TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(fontSize: 17),
-                      )),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Cancel", style: TextStyle(fontSize: 17)),
+                  ),
                 ],
               ),
             ],

@@ -20,11 +20,8 @@ class RegisteredUserProvider with ChangeNotifier {
 
   newRegisterUser({context, email, password, username, age, title}) async {
     try {
-      final credential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
 
       // Upload image to firebase storage
       final storageRef = FirebaseStorage.instance.ref('userImages/$imgName');
@@ -34,20 +31,20 @@ class RegisteredUserProvider with ChangeNotifier {
       debugPrint("url is : $url");
 
       // User Added Data  <<
-      CollectionReference users =
-      await FirebaseFirestore.instance.collection('userS');
+      CollectionReference users = FirebaseFirestore.instance.collection(
+        'userS',
+      );
       users
           .doc(credential.user!.uid)
           .set({
-        'username': username,
-        'age': age,
-        "title": title,
-        "email": email,
-        "pass": password,
-        "imgLink": url,
-      })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
+            'username': username,
+            'age': age,
+            "title": title,
+            "email": email,
+            "imgLink": url,
+          })
+          .then((value) => debugPrint("User Added"))
+          .catchError((error) => debugPrint("Failed to add user: $error"));
 
       showSnackBar(context, "Successfully Register", 2);
       debugPrint('Successfully Register');
@@ -100,12 +97,9 @@ class RegisteredUserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  uploadImage2Screen({
-    setState,
-    ImageSource,
-  }) async {
+  uploadImage2Screen({setState, imageSource}) async {
     debugPrint("will select img");
-    final pickedImg = await ImagePicker().pickImage(source: ImageSource);
+    final pickedImg = await ImagePicker().pickImage(source: imageSource);
     debugPrint("Noooooo select img");
     try {
       debugPrint("TRY select img");
@@ -114,7 +108,7 @@ class RegisteredUserProvider with ChangeNotifier {
         setState(() {
           imgPath = File(pickedImg.path);
           imgName = basename(pickedImg.path);
-          imgName = "${Random().nextInt(9999999)}${imgName}";
+          imgName = "${Random().nextInt(9999999)}$imgName";
         });
         debugPrint('imgName: $imgName \n imgPath: $imgPath');
         debugPrint("Have selected img");
@@ -122,10 +116,8 @@ class RegisteredUserProvider with ChangeNotifier {
         debugPrint("NO img selected");
       }
     } catch (e) {
-      print("Error => $e");
+      debugPrint("Error => $e");
     }
     notifyListeners();
   }
-
-
 }

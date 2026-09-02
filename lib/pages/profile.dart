@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
-  ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -23,8 +23,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     /////////////////////// Providers here ////////////////////
-    final googleProvider =
-        Provider.of<GoogleSignInProvider>(context, listen: false);
+    final googleProvider = Provider.of<GoogleSignInProvider>(
+      context,
+      listen: false,
+    );
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -40,23 +42,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 MaterialPageRoute(builder: (context) => const Login()),
               );
             },
-            label: Text(
+            label: const Text(
               "logout",
               style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
-            icon: Icon(
-              Icons.logout,
-              color: Colors.white,
-              size: 25,
-            ),
-          )
+            icon: const Icon(Icons.logout, color: Colors.white, size: 25),
+          ),
         ],
         backgroundColor: appBarGreen,
-        title:
-            Text("Profile Page", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          "Profile Page",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -67,8 +68,8 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               Center(
                 child: Container(
-                  padding: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: appBarGreen,
                     // Color.fromARGB(125, 78, 91, 110),
@@ -79,45 +80,51 @@ class _ProfilePageState extends State<ProfilePage> {
 
                       // (registeredProvider.url == null)
                       (user!.uid.isEmpty)
-                          ? CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 225, 225, 225),
+                          ? const CircleAvatar(
+                              backgroundColor: Color.fromARGB(
+                                255,
+                                225,
+                                225,
+                                225,
+                              ),
                               radius: 70,
                               // backgroundImage: AssetImage("assets/img/avatar.png"),
-                              backgroundImage:
-                                  AssetImage("assets/img/avatar.png"),
+                              backgroundImage: AssetImage(
+                                "assets/img/avatar.png",
+                              ),
                             )
-                          : ImgUser(),
+                          : const ImgUser(),
                       Positioned(
                         right: -10,
                         bottom: -12,
                         child: IconButton(
                           onPressed: () async {
                             await showModel(
-                                context: context, setState: setState);
+                              context: context,
+                              setState: setState,
+                            );
                             //////////////////////////////////////////////////////////////////////////////
                           },
                           icon: const Icon(
                             Icons.add_a_photo,
                             color: Colors.grey,
                           ),
-                          color: Color.fromARGB(255, 94, 115, 128),
+                          color: const Color.fromARGB(255, 94, 115, 128),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Center(
                 child: Container(
-                  padding: EdgeInsets.all(11),
+                  padding: const EdgeInsets.all(11),
                   decoration: BoxDecoration(
-                      color: appBarGreen,
-                      borderRadius: BorderRadius.circular(11)),
-                  child: Text(
+                    color: appBarGreen,
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                  child: const Text(
                     "Info from firebase Auth",
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
@@ -126,64 +133,46 @@ class _ProfilePageState extends State<ProfilePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Text(
-                    "Email: ${user!.email}",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 25),
+                  Text("Email: ${user!.email}",
+                      style: const TextStyle(fontSize: 18)),
+                  const SizedBox(height: 15),
                   Text(
                     "Created date: ${DateFormat('d, MMM, y').format(user!.metadata.creationTime!)}",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
+                    style: const TextStyle(fontSize: 18),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15),
                   Text(
                     "Last Signed In: ${DateFormat('d, MMM, y').format(user!.metadata.lastSignInTime!)}",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 25,
-              ),
+              const SizedBox(height: 25),
               Center(
                 child: TextButton(
-                    onPressed: () {
-                      deleteUser(context);
-                    },
-                    child: Text(
-                      "Delete User",
-                      style: TextStyle(fontSize: 18),
-                    )),
+                  onPressed: () {
+                    deleteUser(context);
+                  },
+                  child:
+                      const Text("Delete User", style: TextStyle(fontSize: 18)),
+                ),
               ),
-              SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               Center(
-                  child: Container(
-                      padding: EdgeInsets.all(11),
-                      decoration: BoxDecoration(
-                          color: appBarGreen,
-                          borderRadius: BorderRadius.circular(11)),
-                      child: Text(
-                        "Info from firebase firestore",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ))),
-              GetDataFromFirestore(
-                documentId: user!.uid,
+                child: Container(
+                  padding: const EdgeInsets.all(11),
+                  decoration: BoxDecoration(
+                    color: appBarGreen,
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                  child: const Text(
+                    "Info from firebase firestore",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
               ),
+              GetDataFromFirestore(documentId: user!.uid),
             ],
           ),
         ),

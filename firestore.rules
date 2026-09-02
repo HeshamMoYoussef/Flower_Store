@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // userS/{uid} — profile is publicly readable within the app (catalog/checkout
+    // need author info), but only the authenticated owner may create/update/delete
+    // their own document. The plaintext-password field this app used to write here
+    // has been removed entirely — Firebase Auth is the sole credential store.
+    match /userS/{uid} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Deny everything else by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

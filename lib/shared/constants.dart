@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 const decorationTextField = InputDecoration(
-// To delete borders
+  // To delete borders
   enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(
-      color: Colors.blueGrey,
-    ),
+    borderSide: BorderSide(color: Colors.blueGrey),
   ),
   fillColor: Colors.black12,
   filled: true,

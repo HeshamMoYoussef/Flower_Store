@@ -14,9 +14,7 @@ Future<void> main() async {
   // Provider.debugCheckInvalidValueType = null;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(
-    const MyApp(),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,9 +27,7 @@ class MyApp extends StatelessWidget {
         ListenableProvider<GoogleSignInProvider>(
           create: (BuildContext context) => GoogleSignInProvider(),
         ),
-        ListenableProvider<Cart>(
-          create: (BuildContext context) => Cart(),
-        ),
+        ListenableProvider<Cart>(create: (BuildContext context) => Cart()),
         ListenableProvider<RegisteredUserProvider>(
           create: (BuildContext context) => RegisteredUserProvider(),
         ),
@@ -40,15 +36,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
         // VerifyEmailPage(), =>> set Functionality later =>> Don't Forget this Screen <<<<<<<<<<<<<<<<<
-
         home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                ),
+                child: CircularProgressIndicator(color: Colors.white),
               );
             } else if (snapshot.hasData) {
               debugPrint('inSide Home Screen');
@@ -57,7 +50,8 @@ class MyApp extends StatelessWidget {
               return showSnackBar(context, "Something went wrong", 2);
             } else {
               debugPrint(
-                  '"StartRunMainFunction. Then> RunAppMyAppClass. Then>(home:StreamBuilder) Finally ">@@@@@@@@@@@@@@@@@> InSide Login Screen <@@@@@@@@@@@@@@@@@<');
+                '"StartRunMainFunction. Then> RunAppMyAppClass. Then>(home:StreamBuilder) Finally ">@@@@@@@@@@@@@@@@@> InSide Login Screen <@@@@@@@@@@@@@@@@@<',
+              );
               return const Login();
             }
           },

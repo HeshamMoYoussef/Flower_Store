@@ -17,30 +17,31 @@ class ProductAndPrice extends StatelessWidget {
         Stack(
           children: [
             Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(211, 164, 255, 193),
-                    shape: BoxShape.circle),
-                child: Text(
-                  '${cartInstance.itemCount}',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                )),
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(211, 164, 255, 193),
+                shape: BoxShape.circle,
+              ),
+              child: Text(
+                '${cartInstance.itemCount}',
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+              ),
+            ),
             IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CheckOut(),
-                    ),
-                  );
-                },
-                icon: Icon(Icons.add_shopping_cart)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CheckOut()),
+                );
+              },
+              icon: Icon(Icons.add_shopping_cart),
+            ),
           ],
         ),
         Padding(
           padding: const EdgeInsets.only(right: 12),
           child: Text("\$ ${cartInstance.price}"),
-        )
+        ),
       ],
     );
   }

@@ -3,9 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ImgUser extends StatefulWidget {
-  ImgUser({
-    Key? key,
-  }) : super(key: key);
+  const ImgUser({Key? key}) : super(key: key);
 
   @override
   State<ImgUser> createState() => _ImgUserState();
@@ -23,13 +21,13 @@ class _ImgUserState extends State<ImgUser> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
           //**********//
           debugPrint("Document does not exist");
-          return CircleAvatar(
+          return const CircleAvatar(
             backgroundColor: Color.fromARGB(255, 225, 225, 225),
             radius: 70,
             backgroundImage: AssetImage("assets/img/avatar.png"),
@@ -44,19 +42,21 @@ class _ImgUserState extends State<ImgUser> {
           return user.photoURL != null
               ? ClipOval(
                   child: Image(
-                      width: 145,
-                      height: 145,
-                      fit: BoxFit.cover,
-                      image: NetworkImage("${user.photoURL}")))
+                    width: 145,
+                    height: 145,
+                    fit: BoxFit.cover,
+                    image: NetworkImage("${user.photoURL}"),
+                  ),
+                )
               : CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 225, 225, 225),
+                  backgroundColor: const Color.fromARGB(255, 225, 225, 225),
                   radius: 70,
                   // backgroundImage: AssetImage("assets/img/avatar.png"),
                   backgroundImage: NetworkImage(data["imgLink"]),
                 );
         }
 
-        return Text("loading");
+        return const Text("loading");
       },
     );
   }

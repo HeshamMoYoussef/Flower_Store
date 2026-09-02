@@ -32,28 +32,33 @@ class DrawerWidget extends StatelessWidget {
                 margin: const EdgeInsets.all(0.5),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(user.photoURL ??
-                          "https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148881320.jpg"),
-                      fit: BoxFit.cover),
+                    image: NetworkImage(
+                      user.photoURL ??
+                          "https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148881320.jpg",
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 accountName: user.displayName != null
                     ? Text(
                         "${user.displayName}",
                         style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       )
-                    : Text(''),
+                    : const Text(''),
                 accountEmail: Text(
                   "${user.email}",
                   style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 currentAccountPictureSize: const Size.square(85),
-                currentAccountPicture: ImgUser(),
+                currentAccountPicture: const ImgUser(),
 
                 // googleProvider.googleSignIn != null
                 //     // (user.uid.isEmpty)
@@ -69,85 +74,89 @@ class DrawerWidget extends StatelessWidget {
                 // ImgUser(),
               ),
               ListTile(
-                  title: const Text(
-                    "Home",
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal),
+                title: const Text(
+                  "Home",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
                   ),
-                  leading: const Icon(Icons.home, size: 40, color: appBarGreen),
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Home(),
-                      ),
-                    );
-                  }),
+                ),
+                leading: const Icon(Icons.home, size: 40, color: appBarGreen),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Home()),
+                  );
+                },
+              ),
               ListTile(
-                  title: const Text(
-                    "My products",
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal),
+                title: const Text(
+                  "My products",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
                   ),
-                  leading: const Icon(
-                    Icons.add_shopping_cart,
-                    size: 40,
-                    color: appBarGreen,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CheckOut(),
-                      ),
-                    );
-                  }),
+                ),
+                leading: const Icon(
+                  Icons.add_shopping_cart,
+                  size: 40,
+                  color: appBarGreen,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CheckOut()),
+                  );
+                },
+              ),
               ListTile(
-                  title: const Text(
-                    "About",
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal),
+                title: const Text(
+                  "About",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
                   ),
-                  leading: const Icon(
-                    Icons.help_center,
-                    size: 40,
-                    color: appBarGreen,
-                  ),
-                  onTap: () {}),
+                ),
+                leading: const Icon(
+                  Icons.help_center,
+                  size: 40,
+                  color: appBarGreen,
+                ),
+                onTap: () {},
+              ),
               ListTile(
-                  title: const Text(
-                    "My Profile",
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal),
+                title: const Text(
+                  "My Profile",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
                   ),
-                  leading: const Icon(
-                    Icons.personal_injury_outlined,
-                    size: 40,
-                    color: appBarGreen,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfilePage(),
-                      ),
-                    );
-                  }),
+                ),
+                leading: const Icon(
+                  Icons.personal_injury_outlined,
+                  size: 40,
+                  color: appBarGreen,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()),
+                  );
+                },
+              ),
               ListTile(
                 title: const Text(
                   "Logout",
                   style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.teal),
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
+                  ),
                 ),
                 leading: const Icon(
                   Icons.exit_to_app,
@@ -172,11 +181,12 @@ class DrawerWidget extends StatelessWidget {
             child: const Text(
               "Developed by ~HESHAM^MOHAMED~ ©2023",
               style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.teal),
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: Colors.teal,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

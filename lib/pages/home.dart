@@ -15,8 +15,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ///////////////////// Provider ////////////
-    final googleProvider =
-        Provider.of<GoogleSignInProvider>(context, listen: false);
+    final googleProvider = Provider.of<GoogleSignInProvider>(
+      context,
+      listen: false,
+    );
     final cartInstance = Provider.of<Cart>(context);
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
@@ -31,95 +33,93 @@ class Home extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(bottom: 5, top: 5, left: 10, right: 10),
-              decoration: BoxDecoration(color: Colors.white70),
+              margin:
+                  const EdgeInsets.only(bottom: 5, top: 5, left: 10, right: 10),
+              decoration: const BoxDecoration(color: Colors.white70),
               child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 4 / 3.5,
-                    crossAxisSpacing: 3,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemCount: items.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Stack(
-                      children: [
-                        Positioned(
-                          top: -25,
-                          bottom: -15,
-                          left: 0,
-                          right: 0,
-                          child: GridTile(
-                            footer: GridTileBar(
-// backgroundColor: Color.fromARGB(66, 73, 127, 110),
-                              trailing: IconButton(
-                                color: const Color.fromARGB(255, 62, 94, 70),
-                                onPressed: () {
-                                  cartInstance.add(items[index]);
-                                },
-                                icon: Icon(
-                                  Icons.add,
-                                  size: 30,
-                                ),
-                              ),
-
-                              leading: Text(
-                                "\$${items[index].price}",
-                                style: const TextStyle(fontSize: 16),
-                              ),
-
-                              title: const Text(
-                                "",
-                              ),
-                            ),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Details(
-                                      product: items[index],
-                                    ),
-                                  ),
-                                );
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 4 / 3.5,
+                  crossAxisSpacing: 3,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Stack(
+                    children: [
+                      Positioned(
+                        top: -25,
+                        bottom: -15,
+                        left: 0,
+                        right: 0,
+                        child: GridTile(
+                          footer: GridTileBar(
+                            // backgroundColor: Color.fromARGB(66, 73, 127, 110),
+                            trailing: IconButton(
+                              color: const Color.fromARGB(255, 62, 94, 70),
+                              onPressed: () {
+                                cartInstance.add(items[index]);
                               },
-// use ClipRRect & Positioned
-                              child: Stack(
-                                fit: StackFit.expand,
-                                children: [
-                                  Positioned(
-                                    left: 0,
-                                    right: 0,
-                                    top: 5,
-                                    bottom: 0,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(1000),
-                                      child: Image.asset(items[index].imgPath),
-                                    ),
+                              icon: const Icon(Icons.add, size: 30),
+                            ),
+
+                            leading: Text(
+                              "\$${items[index].price}",
+                              style: const TextStyle(fontSize: 16),
+                            ),
+
+                            title: const Text(""),
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      Details(product: items[index]),
+                                ),
+                              );
+                            },
+                            // use ClipRRect & Positioned
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  top: 5,
+                                  bottom: 0,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(1000),
+                                    child: Image.asset(items[index].imgPath),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    );
-                  }),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
           Container(
-            decoration: BoxDecoration(color: appBarGreen),
-            child: SizedBox(
+            decoration: const BoxDecoration(color: appBarGreen),
+            child: const SizedBox(
               height: 40,
+              width: double.infinity,
               child: Center(
-                  child: Text(
-                'FLOWER STORE ©',
-                style: TextStyle(
+                child: Text(
+                  'FLOWER STORE ©',
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              )),
-              width: double.infinity,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

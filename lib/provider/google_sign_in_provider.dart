@@ -10,9 +10,7 @@ class GoogleSignInProvider with ChangeNotifier {
 
   GoogleSignInAccount get user => _user!;
 
-  signInWithGoogle({
-    context,
-  }) async {
+  signInWithGoogle({context}) async {
     debugPrint('Inside signInWithGoogle');
     try {
       // begin interactive sign in process
@@ -20,7 +18,7 @@ class GoogleSignInProvider with ChangeNotifier {
       // obtain auth details from request
       if (user != null) {
         final GoogleSignInAuthentication googleAuthentication =
-        await user.authentication; // how to handle A null value ?????
+            await user.authentication; // how to handle A null value ?????
 
         // create a new credential for user
         final credential = GoogleAuthProvider.credential(
@@ -29,11 +27,6 @@ class GoogleSignInProvider with ChangeNotifier {
         );
         // finally, lets sign in
         await FirebaseAuth.instance.signInWithCredential(credential);
-        //////////////////// Don't Forget reading this credential
-        debugPrint(
-            ' ${user} \n credential.accessToken is:  ${credential} \n credential.accessToken is:  ${credential
-                .accessToken}  \n credential.idToken is:  ${credential
-                .idToken} \n ');
 
         Navigator.pushReplacement(
           context,
@@ -52,6 +45,4 @@ class GoogleSignInProvider with ChangeNotifier {
 
     notifyListeners();
   }
-
 }
-

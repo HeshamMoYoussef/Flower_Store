@@ -28,8 +28,10 @@ class _LoginState extends State<Login> {
 
   setEmailField() {
     /////// Provider here //////
-    final registeredProvider =
-        Provider.of<RegisteredUserProvider>(context, listen: false);
+    final registeredProvider = Provider.of<RegisteredUserProvider>(
+      context,
+      listen: false,
+    );
     if (registeredProvider.userEmail == null) {
       return;
     } else {
@@ -62,27 +64,32 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     /////////////////////// Providers here ////////////////////
-    final registeredProvider =
-        Provider.of<RegisteredUserProvider>(context, listen: false);
-    final googleProvider =
-        Provider.of<GoogleSignInProvider>(context, listen: false);
+    final registeredProvider = Provider.of<RegisteredUserProvider>(
+      context,
+      listen: false,
+    );
+    final googleProvider = Provider.of<GoogleSignInProvider>(
+      context,
+      listen: false,
+    );
     ///////////////////////////////////////////////////////////
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Sign in'),
-          centerTitle: true,
-          backgroundColor: appBarGreen),
+        title: const Text('Sign in'),
+        centerTitle: true,
+        backgroundColor: appBarGreen,
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
           child: SingleChildScrollView(
-              child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormField(
                     validator: (email) {
                       return isEmailValid(email);
                     },
@@ -93,176 +100,166 @@ class _LoginState extends State<Login> {
                     decoration: decorationTextField.copyWith(
                       hintText: "Enter Your Email : ",
                       suffixIcon: const Icon(Icons.email),
-                    )),
-                const SizedBox(
-                  height: 35,
-                ),
-                TextFormField(
-                  validator: (value) {
-                    return value!.length < 8
-                        ? "Enter at least 8 characters"
-                        : null;
-                  },
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: passwordController,
-                  keyboardType: TextInputType.text,
-                  obscureText: isVisible,
-                  decoration: decorationTextField.copyWith(
-                    hintText: "Enter Your Password : ",
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isVisible = !isVisible;
-                        });
-                      },
-                      icon: isVisible
-                          ? const Icon(Icons.visibility_outlined)
-                          : const Icon(Icons.visibility_off_outlined),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      setState(() {
-                        isLoading = true;
-                      });
-                      await registeredProvider.loginUserHasRegistered(
-                          context: context,
-                          email: emailController.text,
-                          password: passwordController.text);
-                      setState(() {
-                        isLoading = false;
-                      });
-                    } else {
-                      showSnackBar(
-                          context, "Enter a valid Email And Password", 2);
-                    }
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(btnGreen),
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(12)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8))),
-                  ),
-                  child: isLoading
-                      ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : const Text(
-                          "Login",
-                          style: TextStyle(fontSize: 19),
-                        ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ForgotPassword()),
-                    );
-                  },
-                  child: const Text(
-                    "Forgot password?",
-                    style: TextStyle(
-                        fontSize: 16, decoration: TextDecoration.underline),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Row(
-                  children: [
-                    Expanded(
-                        child: Divider(
-                      thickness: 0.4,
-                      color: Colors.black54,
-                    )),
-                    Text(
-                      " OR Continue With ",
-                      style: TextStyle(
-                        fontSize: 14,
+                  const SizedBox(height: 35),
+                  TextFormField(
+                    validator: (value) {
+                      return value!.length < 8
+                          ? "Enter at least 8 characters"
+                          : null;
+                    },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    controller: passwordController,
+                    keyboardType: TextInputType.text,
+                    obscureText: isVisible,
+                    decoration: decorationTextField.copyWith(
+                      hintText: "Enter Your Password : ",
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isVisible = !isVisible;
+                          });
+                        },
+                        icon: isVisible
+                            ? const Icon(Icons.visibility_outlined)
+                            : const Icon(Icons.visibility_off_outlined),
                       ),
                     ),
-                    Expanded(
-                        child: Divider(
-                      thickness: 0.4,
-                      color: Colors.black54,
-                    )),
-                  ],
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    setState(() {
-                      isLoadingGoogle = true;
-                    });
-                    await googleProvider.signInWithGoogle(
-                      context: context,
-                    );
-                    setState(() {
-                      isLoadingGoogle = false;
-                    });
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.google,
-                    color: Colors.red,
-                    size: 25,
                   ),
-                  label: isLoadingGoogle
-                      ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : const Text(
-                          "Sign In With Google ",
-                          style: TextStyle(fontSize: 19),
+                  const SizedBox(height: 35),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        await registeredProvider.loginUserHasRegistered(
+                          context: context,
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                        setState(() {
+                          isLoading = false;
+                        });
+                      } else {
+                        showSnackBar(
+                          context,
+                          "Enter a valid Email And Password",
+                          2,
+                        );
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(btnGreen),
+                      padding: WidgetStateProperty.all(
+                        const EdgeInsets.all(12),
+                      ),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                  style: ElevatedButton.styleFrom(
+                      ),
+                    ),
+                    child: isLoading
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text("Login", style: TextStyle(fontSize: 19)),
+                  ),
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPassword(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Forgot password?",
+                      style: TextStyle(
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Row(
+                    children: [
+                      Expanded(
+                        child: Divider(thickness: 0.4, color: Colors.black54),
+                      ),
+                      Text(
+                        " OR Continue With ",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      Expanded(
+                        child: Divider(thickness: 0.4, color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 35),
+                  ElevatedButton.icon(
+                    onPressed: () async {
+                      setState(() {
+                        isLoadingGoogle = true;
+                      });
+                      await googleProvider.signInWithGoogle(context: context);
+                      setState(() {
+                        isLoadingGoogle = false;
+                      });
+                    },
+                    icon: const FaIcon(
+                      FontAwesomeIcons.google,
+                      color: Colors.red,
+                      size: 25,
+                    ),
+                    label: isLoadingGoogle
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text(
+                            "Sign In With Google ",
+                            style: TextStyle(fontSize: 19),
+                          ),
+                    style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.blueGrey,
                       minimumSize: const Size(double.minPositive, 40),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Do not have an account?",
-                        style: TextStyle(fontSize: 18)),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Register(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'Register Now',
-                        style: TextStyle(
-                          fontSize: 16,
-                          decoration: TextDecoration.underline,
-                        ),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  const SizedBox(height: 35),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Do not have an account?",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Register(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Register Now',
+                          style: TextStyle(
+                            fontSize: 16,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          )),
+          ),
         ),
       ),
     );

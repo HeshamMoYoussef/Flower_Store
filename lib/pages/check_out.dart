@@ -13,9 +13,10 @@ class CheckOut extends StatelessWidget {
     final cartInstance = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Check Out"),
-          backgroundColor: appBarGreen,
-          actions: const [ProductAndPrice()]),
+        title: const Text("Check Out"),
+        backgroundColor: appBarGreen,
+        actions: const [ProductAndPrice()],
+      ),
       body: Column(
         children: [
           Expanded(
@@ -39,17 +40,21 @@ class CheckOut extends StatelessWidget {
                     },
                     title: Text(cartInstance.selectedProducts[index].name),
                     subtitle: Text(
-                        '${cartInstance.selectedProducts[index].price} - ${cartInstance.selectedProducts[index].location}'),
+                      '${cartInstance.selectedProducts[index].price} - ${cartInstance.selectedProducts[index].location}',
+                    ),
                     leading: CircleAvatar(
                       backgroundImage: AssetImage(
-                          cartInstance.selectedProducts[index].imgPath),
+                        cartInstance.selectedProducts[index].imgPath,
+                      ),
                     ),
                     trailing: IconButton(
-                        onPressed: () {
-                          cartInstance
-                              .delete(cartInstance.selectedProducts[index]);
-                        },
-                        icon: const Icon(Icons.remove)),
+                      onPressed: () {
+                        cartInstance.delete(
+                          cartInstance.selectedProducts[index],
+                        );
+                      },
+                      icon: const Icon(Icons.remove),
+                    ),
                   ),
                 );
               },
@@ -60,10 +65,13 @@ class CheckOut extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(btnPink),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(15)),
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25))),
+                backgroundColor: WidgetStateProperty.all(btnPink),
+                padding: WidgetStateProperty.all(const EdgeInsets.all(15)),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
               ),
               child: Text(
                 "Pay \$${cartInstance.price}",
